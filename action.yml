@@ -1,0 +1,15 @@
+name: 'Go Test Reporter'
+author: 'Brett Logan'
+description: 'A Go test reporter for GitHub Actions'
+inputs:
+  coverage_file:
+    required: true
+    description: 'The coverage file to use'
+    default: 'coverage.json'
+  coverage_threshold:
+    required: true
+    description: 'The minimum coverage threshold to pass'
+    default: '80'
+runs:
+  using: node16
+  main: dist/index.js
