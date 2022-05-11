@@ -1976,26 +1976,27 @@ module.exports = require("util");
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-const fs = __nccwpck_require__(147);
-const core = __nccwpck_require__(186);
+const fs = __nccwpck_require__(147)
+const core = __nccwpck_require__(186)
 
 
 async function main() {
-    const input = core.getInput('coverage_file', { required: true, trimWhitespace: true });
-    const coverage = core.getInput('coverage_threshold', { required: true, trimWhitespace: true });
+    const input = core.getInput('coverage_file', { required: true, trimWhitespace: true })
+    const coverage = core.getInput('coverage_threshold', { required: true, trimWhitespace: true })
 
-    const lines = JSON.parse(fs.readFileSync(input, 'utf8'));
+    const lines = JSON.parse(fs.readFileSync(input, 'utf8'))
     const results = [
         [{data: 'Package', header: true}, {data: 'Coverage', header: true}]
     ]
-
+    console.log(lines)
     for(const line of lines ){
         if(line.Output && line.Output.startsWith('coverage')){
-            const coverage_value = line.Output.split(' ')[1].split('%')[0];
+            const coverage_value = line.Output.split(' ')[1].split('%')[0]
             if(coverage_value < coverage){
+                core.setFailed(`Coverage is below ${coverage}%`)
                 results.push([`<span style="color:darkred">${line.Package}</span>`, line.Output.split(':')[1].trim()])
             } else {
-                results.push([`<span style="color:green">${line.Package}</span>`, line.Output.split(':')[1].trim()]);
+                results.push([`<span style="color:green">${line.Package}</span>`, line.Output.split(':')[1].trim()])
             }
         }
     }
@@ -2004,7 +2005,7 @@ async function main() {
         .addHeading('Code Coverage Report')
         .addTable(results)
         .addLink('Code Coverage Rules', 'https://github.com/actions/code-coverage-rules')
-        .write();
+        .write()
 }
 
 main()
