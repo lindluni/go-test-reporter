@@ -23,6 +23,7 @@ async function main() {
         }
     }
 
+    console.log(results)
     await core.summary
         .addHeading('Code Coverage Report')
         .addTable(results)
