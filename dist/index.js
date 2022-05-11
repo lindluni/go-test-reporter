@@ -1986,16 +1986,16 @@ async function main() {
 
     const lines = JSON.parse(fs.readFileSync(input, 'utf8'))
     const results = [
-        [{data: 'Package', header: true}, {data: 'Coverage', header: true}]
+        [{data: 'Package', header: true}, {data: 'Coverage', header: true}, {data: 'Result', header: true}],
     ]
     for(const line of lines ){
         if(line.Output && line.Output.startsWith('coverage')){
             const coverage_value = line.Output.split(' ')[1].split('%')[0]
             if(coverage_value < coverage){
                 core.setFailed(`Coverage is below ${coverage}%`)
-                results.push([`<span style="color:darkred">${line.Package}</span>`, line.Output.split(':')[1].trim()])
+                results.push([line.Package, line.Output.split(':')[1].trim(), 'Fail ❌'])
             } else {
-                results.push([`<span style="color:green">${line.Package}</span>`, line.Output.split(':')[1].trim()])
+                results.push([line.Package, line.Output.split(':')[1].trim(), 'Pass ✅'])
             }
         }
     }
