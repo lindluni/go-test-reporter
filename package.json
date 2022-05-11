@@ -1,0 +1,17 @@
+{
+  "name": "go-test-reporter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install && ./node_modules/.bin/ncc build index.js"
+  },
+  "author": "Brett Logan",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@actions/core": "^1.8.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.33.4"
+  }
+}
