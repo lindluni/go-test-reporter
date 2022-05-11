@@ -1,7 +1,6 @@
 const fs = require('fs')
 const core = require('@actions/core')
 
-
 async function main() {
     const input = core.getInput('coverage_file', { required: true, trimWhitespace: true })
     const coverage = core.getInput('coverage_threshold', { required: true, trimWhitespace: true })
@@ -15,9 +14,9 @@ async function main() {
             const coverage_value = line.Output.split(' ')[1].split('%')[0]
             if(coverage_value < coverage){
                 core.setFailed(`Coverage is below ${coverage}%`)
-                results.push([line.Package, line.Output.split(':')[1].trim(), 'Fail ❌'])
+                results.push([line.Package, line.Output.split(':')[1].trim(), '❌'])
             } else {
-                results.push([line.Package, line.Output.split(':')[1].trim(), 'Pass ✅'])
+                results.push([line.Package, line.Output.split(':')[1].trim(), '✅'])
             }
         }
     }
