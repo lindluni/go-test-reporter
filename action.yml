@@ -6,6 +6,10 @@ inputs:
     required: true
     description: 'The coverage file to use'
     default: 'coverage.json'
+  coverage_rules:
+    required: false
+    description: 'URL to the coverage guidelines for your project'
+    default: 'https://golangdocs.com/code-coverage-in-golang'
   coverage_threshold:
     required: true
     description: 'The minimum coverage threshold to pass'
