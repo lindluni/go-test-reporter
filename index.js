@@ -10,7 +10,6 @@ async function main() {
     const results = [
         [{data: 'Package', header: true}, {data: 'Coverage', header: true}]
     ]
-    console.log(lines)
     for(const line of lines ){
         if(line.Output && line.Output.startsWith('coverage')){
             const coverage_value = line.Output.split(' ')[1].split('%')[0]
@@ -23,7 +22,6 @@ async function main() {
         }
     }
 
-    console.log(results)
     await core.summary
         .addHeading('Code Coverage Report')
         .addTable(results)
