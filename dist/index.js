@@ -1989,7 +1989,7 @@ async function main() {
     ]
     for(const line of lines ){
         if(line.Output && line.Output.startsWith('coverage')){
-            const coverage_value = line.Output.split(' ')[1].split('%')[0]
+            const coverage_value = parseFloat(line.Output.split(' ')[1].split('%')[0])
             if(coverage_value < coverage){
                 core.setFailed(`Coverage is below ${coverage}%`)
                 results.push([line.Package, line.Output.split(':')[1].trim(), '❌'])
