@@ -9,7 +9,7 @@
   "author": "Brett Logan",
   "license": "Apache-2.0",
   "dependencies": {
-    "@actions/core": "^1.8.0"
+    "@actions/core": "^1.9.1"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.33.4"
